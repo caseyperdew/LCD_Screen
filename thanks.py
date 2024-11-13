@@ -9,6 +9,8 @@ from adafruit_display_shapes.roundrect import RoundRect
 from adafruit_display_shapes.triangle import Triangle
 from adafruit_display_shapes.line import Line
 from adafruit_display_shapes.polygon import Polygon
+import time
+
 BORDER = 20
 FONTSCALE = 2
 BACKGROUND_COLOR = 0x000000
@@ -33,69 +35,93 @@ color_palette[0] = BACKGROUND_COLOR
 bg_sprite = displayio.TileGrid(color_bitmap, pixel_shader = color_palette, x=0, y=0)
 splash.append(bg_sprite)
 
+#tail feathers
 
+#leftmost
 blue = Triangle(120,65, 50, 15, 70, 15, fill = YELLOW , outline = YELLOW)
 splash.append(blue)
 
-blue = Triangle(120,65, 80, 10, 60, 10, fill = ORANGE , outline = ORANGE)
-splash.append(blue)
+orange = Triangle(120,65, 80, 10, 60, 10, fill = ORANGE , outline = ORANGE)
+splash.append(orange)
 
-blue = Triangle(120,65, 70, 5, 90, 5, fill = YELLOW , outline = YELLOW)
-splash.append(blue)
+yellow = Triangle(120,65, 70, 5, 90, 5, fill = YELLOW , outline = YELLOW)
+splash.append(yellow)
 
-blue = Triangle(120,65, 100, 3, 80, 3, fill = ORANGE , outline = ORANGE)
-splash.append(blue)
+red = Triangle(120,65, 100, 3, 80, 3, fill = ORANGE , outline = ORANGE)
+splash.append(red)
 
+#rightmost
+teal = Triangle(120,65, 190, 15, 170, 15, fill = YELLOW , outline = YELLOW)
+splash.append(teal)
 
+gray = Triangle(120,65, 160, 10, 180, 10, fill = ORANGE , outline = ORANGE)
+splash.append(gray)
 
+black = Triangle(120,65, 170, 5, 150, 5, fill = YELLOW , outline = YELLOW)
+splash.append(black)
 
-blue = Triangle(120,65, 190, 15, 170, 15, fill = YELLOW , outline = YELLOW)
-splash.append(blue)
+white = Triangle(120,65, 130, 3, 160, 3, fill = ORANGE , outline = ORANGE)
+splash.append(white)
 
-blue = Triangle(120,65, 160, 10, 180, 10, fill = ORANGE , outline = ORANGE)
-splash.append(blue)
+#middle
+violet = Triangle(120,65, 150, 2, 90, 2, fill = YELLOW , outline = YELLOW)
+splash.append(violet)
 
-blue = Triangle(120,65, 170, 5, 150, 5, fill = YELLOW , outline = YELLOW)
-splash.append(blue)
+purple = Triangle(120,65, 100, 2, 140, 2, fill = ORANGE , outline = ORANGE)
+splash.append(purple)
 
-blue = Triangle(120,65, 130, 3, 160, 3, fill = ORANGE , outline = ORANGE)
-splash.append(blue)
+lilac = Triangle(120,65, 110, 2, 130, 2, fill = YELLOW , outline = YELLOW)
+splash.append(lilac)
 
-
-
-blue = Triangle(120,65, 150, 2, 90, 2, fill = YELLOW , outline = YELLOW)
-splash.append(blue)
-
-blue = Triangle(120,65, 100, 2, 140, 2, fill = ORANGE , outline = ORANGE)
-splash.append(blue)
-
-blue = Triangle(120,65, 110, 2, 130, 2, fill = YELLOW , outline = YELLOW)
-splash.append(blue)
-
-blue = Triangle(120,65, 115, 2, 125, 2, fill = ORANGE , outline = ORANGE)
-splash.append(blue)
+seafoam = Triangle(120,65, 115, 2, 125, 2, fill = ORANGE , outline = ORANGE)
+splash.append(seafoam)
 
 
+#Body
+lightBlue = Circle(120, 67, 40, fill = FOREGROUND_COLOR, outline = FOREGROUND_COLOR, stroke = 2)
+splash.append(lightBlue)
 
-pink = Circle(120, 67, 40, fill = FOREGROUND_COLOR, outline = FOREGROUND_COLOR, stroke = 2)
-splash.append(pink)
+#beak
+forest = Triangle(120,75, 120, 65, 130, 70, fill = YELLOW , outline = YELLOW)
+splash.append(forest)
 
-blue = Triangle(120,75, 120, 65, 130, 70, fill = YELLOW , outline = YELLOW)
-splash.append(blue)
+#left eye
+dark = Circle(100, 50, 7, fill = WHITE, outline = WHITE, stroke = 2)
+splash.append(dark)
 
-pink = Circle(100, 50, 7, fill = WHITE, outline = WHITE, stroke = 2)
-splash.append(pink)
+#right eye
+light = Circle(140, 50, 7, fill = WHITE, outline = WHITE, stroke = 2)
+splash.append(light)
 
-pink = Circle(140, 50, 7, fill = WHITE, outline = WHITE, stroke = 2)
-splash.append(pink)
+#left pupil
+redOrange = Circle(101, 50, 3, fill = BLACK, outline = BLACK, stroke = 2)
+splash.append(redOrange)
 
-pink = Circle(101, 50, 3, fill = BLACK, outline = BLACK, stroke = 2)
-splash.append(pink)
-
+#right pupil
 pink = Circle(141, 50, 3, fill = BLACK, outline = BLACK, stroke = 2)
 splash.append(pink)
 
+#red thingy
 green = RoundRect(110, 65, 10, 30,5, fill = RED, outline = RED, stroke = 2)
 splash.append(green)
 
+direction_x = 1
+velocity_x = 1
+
+
+direction_x2 = 1
+velocity_x2 = 1
+
+while True:
+    if redOrange.x >= 104 or redOrange.x <= 97:
+        direction_x *= -1
+    redOrange.x += (velocity_x * direction_x)
+    
+    
+    if pink.x >= 144 or pink.x <= 137:
+        direction_x2 *= -1
+    pink.x += (velocity_x2 * direction_x2)
+    
+    time.sleep(.15)
+    
 
