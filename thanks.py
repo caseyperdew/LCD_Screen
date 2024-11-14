@@ -105,6 +105,10 @@ splash.append(pink)
 green = RoundRect(110, 65, 10, 30,5, fill = RED, outline = RED, stroke = 2)
 splash.append(green)
 
+#brown triangle for movement
+brown = Triangle(130,70, 140, 65, 140, 75, fill = FOREGROUND_COLOR , outline = FOREGROUND_COLOR)
+splash.append(brown)
+
 direction_x = 1
 velocity_x = 1
 
@@ -112,15 +116,22 @@ velocity_x = 1
 direction_x2 = 1
 velocity_x2 = 1
 
+direction_x3 = 1
+velocity_x3 = 2
+
 while True:
     if redOrange.x >= 104 or redOrange.x <= 97:
         direction_x *= -1
     redOrange.x += (velocity_x * direction_x)
-    
+
     
     if pink.x >= 144 or pink.x <= 137:
         direction_x2 *= -1
     pink.x += (velocity_x2 * direction_x2)
+
+    if brown.x >= 140 or brown.x <= 123:
+        direction_x3 *= -1
+    brown.x += (velocity_x3 * direction_x3)
     
     time.sleep(.15)
     
